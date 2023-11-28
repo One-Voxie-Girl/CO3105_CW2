@@ -11,7 +11,7 @@ using json = nlohmann::json;
 #ifndef CO3105_CW2_MAP_PARSER_H
 #define CO3105_CW2_MAP_PARSER_H
 
-// read map data from file
+// read Map data from file
 json read_map_data(string filename) ;
 
 

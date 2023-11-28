@@ -161,7 +161,7 @@
 #include <array> // array
 #include <forward_list> // forward_list
 #include <iterator> // inserter, front_inserter, end
-#include <map> // map
+#include <map> // Map
 #include <string> // string
 #include <tuple> // tuple, make_tuple
 #include <type_traits> // is_arithmetic, is_same, is_enum, underlying_type, is_convertible
@@ -3362,7 +3362,7 @@ NLOHMANN_JSON_NAMESPACE_END
     #define INCLUDE_NLOHMANN_JSON_FWD_HPP_
 
     #include <cstdint> // int64_t, uint64_t
-    #include <map> // map
+    #include <map> // Map
     #include <memory> // allocator
     #include <string> // string
     #include <vector> // vector
@@ -3414,7 +3414,7 @@ NLOHMANN_JSON_NAMESPACE_END
     */
     using json = basic_json<>;
 
-    /// @brief a minimal map-like container that preserves insertion order
+    /// @brief a minimal Map-like container that preserves insertion order
     /// @sa https://json.nlohmann.me/api/ordered_map/
     template<class Key, class T, class IgnoredLess, class Allocator>
     struct ordered_map;
@@ -9730,7 +9730,7 @@ class binary_reader
             case 0x9F: // array (indefinite length)
                 return get_cbor_array(static_cast<std::size_t>(-1), tag_handler);
 
-            // map (0x00..0x17 pairs of data items follow)
+            // Map (0x00..0x17 pairs of data items follow)
             case 0xA0:
             case 0xA1:
             case 0xA2:
@@ -9757,31 +9757,31 @@ class binary_reader
             case 0xB7:
                 return get_cbor_object(conditional_static_cast<std::size_t>(static_cast<unsigned int>(current) & 0x1Fu), tag_handler);
 
-            case 0xB8: // map (one-byte uint8_t for n follows)
+            case 0xB8: // Map (one-byte uint8_t for n follows)
             {
                 std::uint8_t len{};
                 return get_number(input_format_t::cbor, len) && get_cbor_object(static_cast<std::size_t>(len), tag_handler);
             }
 
-            case 0xB9: // map (two-byte uint16_t for n follow)
+            case 0xB9: // Map (two-byte uint16_t for n follow)
             {
                 std::uint16_t len{};
                 return get_number(input_format_t::cbor, len) && get_cbor_object(static_cast<std::size_t>(len), tag_handler);
             }
 
-            case 0xBA: // map (four-byte uint32_t for n follow)
+            case 0xBA: // Map (four-byte uint32_t for n follow)
             {
                 std::uint32_t len{};
                 return get_number(input_format_t::cbor, len) && get_cbor_object(conditional_static_cast<std::size_t>(len), tag_handler);
             }
 
-            case 0xBB: // map (eight-byte uint64_t for n follow)
+            case 0xBB: // Map (eight-byte uint64_t for n follow)
             {
                 std::uint64_t len{};
                 return get_number(input_format_t::cbor, len) && get_cbor_object(conditional_static_cast<std::size_t>(len), tag_handler);
             }
 
-            case 0xBF: // map (indefinite length)
+            case 0xBF: // Map (indefinite length)
                 return get_cbor_object(static_cast<std::size_t>(-1), tag_handler);
 
             case 0xC6: // tagged item
@@ -10584,13 +10584,13 @@ class binary_reader
                 return get_number(input_format_t::msgpack, len) && get_msgpack_array(conditional_static_cast<std::size_t>(len));
             }
 
-            case 0xDE: // map 16
+            case 0xDE: // Map 16
             {
                 std::uint16_t len{};
                 return get_number(input_format_t::msgpack, len) && get_msgpack_object(static_cast<std::size_t>(len));
             }
 
-            case 0xDF: // map 32
+            case 0xDF: // Map 32
             {
                 std::uint32_t len{};
                 return get_number(input_format_t::msgpack, len) && get_msgpack_object(conditional_static_cast<std::size_t>(len));
@@ -14821,7 +14821,7 @@ NLOHMANN_JSON_NAMESPACE_END
 
 #include <algorithm> // reverse
 #include <array> // array
-#include <map> // map
+#include <map> // Map
 #include <cmath> // isnan, isinf
 #include <cstdint> // uint8_t, uint16_t, uint32_t, uint64_t
 #include <cstring> // memcpy
@@ -15666,13 +15666,13 @@ class binary_writer
                 }
                 else if (N <= (std::numeric_limits<std::uint16_t>::max)())
                 {
-                    // map 16
+                    // Map 16
                     oa->write_character(to_char_type(0xDE));
                     write_number(static_cast<std::uint16_t>(N));
                 }
                 else if (N <= (std::numeric_limits<std::uint32_t>::max)())
                 {
-                    // map 32
+                    // Map 32
                     oa->write_character(to_char_type(0xDF));
                     write_number(static_cast<std::uint32_t>(N));
                 }
@@ -18950,7 +18950,7 @@ NLOHMANN_JSON_NAMESPACE_END
 
 NLOHMANN_JSON_NAMESPACE_BEGIN
 
-/// ordered_map: a minimal map-like container that preserves insertion order
+/// ordered_map: a minimal Map-like container that preserves insertion order
 /// for use within nlohmann::basic_json<ordered_map>
 template <class Key, class T, class IgnoredLess = std::less<Key>,
           class Allocator = std::allocator<std::pair<const Key, T>>>

@@ -4,7 +4,7 @@
 
 #include "map_parser.h"
 
-// read map data from file
+// read Map data from file
 json read_map_data(string filename) {
 
     ifstream file(filename);

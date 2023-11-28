@@ -5,4 +5,15 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(CO3105_CW2 main.cpp
         map_parser.cpp
-        map_parser.h)
+        map_parser.h
+        Classes/Enemy/Enemy.cpp
+        Classes/Enemy/Enemy.h
+        Classes/Map/Map.cpp
+        Classes/Map/Map.h
+        Classes/Player/Player.cpp
+        Classes/Player/Player.h
+        Classes/Room/Room.cpp
+        Classes/Room/Room.h
+        Classes/Item/Item.cpp
+        Classes/Item/Item.h
+)

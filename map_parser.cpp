@@ -33,10 +33,16 @@ Map init_map(json data) {
         enemy.set_desc(e["desc"]);
         enemy.set_aggression(e["aggressiveness"]);
         enemy.set_killedBy(e["killedby"]);
-        map.get_room(e["initialroom"]);
 
         map.rooms[map.get_room_id(e["initialroom"])].add_enemy(enemy);
+    }
 
+    for (auto o:data["objects"]){
+        Item item;
+        item.set_id(o["id"]);
+        item.set_desc(o["desc"]);
+
+        map.rooms[map.get_room_id(o["initialroom"])].add_item(item);
     }
 
     return map;

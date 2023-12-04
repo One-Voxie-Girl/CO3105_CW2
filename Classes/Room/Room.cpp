@@ -47,5 +47,18 @@ string Room::print() {
     for (int i = 0; i < enemies.size(); i++) {
         output += enemies.at(i).print() + "\n";
     }
+    output += "Items: "+to_string(items.size())+"\n";
+    for (int i = 0; i < items.size(); i++) {
+        output += items.at(i).print() + "\n";
+    }
     return output;
+}
+
+bool Room::add_item(Item item) {
+    items.push_back(item);
+    return true;
+}
+
+vector<Item> Room::get_items() {
+    return items;
 }

@@ -5,6 +5,7 @@
 #include <string>
 #include "../../json.hpp"
 #include "../Enemy/Enemy.h"
+#include "../Item/Item.h"
 
 using namespace std;
 using json = nlohmann::json;
@@ -21,6 +22,8 @@ public:
     bool set_exits(json exits);
     string get_id();
     bool add_enemy(Enemy enemy);
+    bool add_item(Item item);
+    vector<Item> get_items();
     vector<Enemy> get_enemies();
     string print();
 
@@ -29,6 +32,7 @@ private:
     string desc;
     json exits;
     vector<Enemy> enemies;
+    vector<Item> items;
 };
 
 

@@ -2,6 +2,11 @@
 // Created by Temmie on 27/11/2023.
 //
 #include "json.hpp"
+#include "Classes/Map/Map.h"
+#include "Classes/Room/Room.h"
+#include "Classes/Item/Item.h"
+#include "Classes/Enemy/Enemy.h"
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -13,6 +18,7 @@ using json = nlohmann::json;
 
 // read Map data from file
 json read_map_data(string filename) ;
+Map init_map(json data) ;
 
 
 

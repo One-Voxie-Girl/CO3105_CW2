@@ -1,13 +1,15 @@
 //
 // Created by Temmie on 28/11/2023.
 //
+
+
+#ifndef CO3105_CW2_ITEM_H
+#define CO3105_CW2_ITEM_H
+
 #include <iostream>
 #include <string>
 
 using namespace std;
-
-#ifndef CO3105_CW2_ITEM_H
-#define CO3105_CW2_ITEM_H
 
 
 class Item {

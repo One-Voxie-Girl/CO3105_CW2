@@ -2,14 +2,16 @@
 // Created by Temmie on 28/11/2023.
 //
 
+
+
+#ifndef CO3105_CW2_ENEMY_H
+#define CO3105_CW2_ENEMY_H
+
 #include <iostream>
 #include <string>
 #include <vector>
 
 using namespace std;
-
-#ifndef CO3105_CW2_ENEMY_H
-#define CO3105_CW2_ENEMY_H
 
 
 class Enemy {

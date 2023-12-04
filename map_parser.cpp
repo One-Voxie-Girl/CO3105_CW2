@@ -45,6 +45,13 @@ Map init_map(json data) {
         map.rooms[map.get_room_id(o["initialroom"])].add_item(item);
     }
 
+
+        Player player;
+//        cout << data["player"]["initialroom"] << endl;
+        player.set_room(data["player"]["initialroom"]);
+        map.rooms[map.get_room_id(data["player"]["initialroom"])].add_player(player);
+
+
     return map;
 }
 

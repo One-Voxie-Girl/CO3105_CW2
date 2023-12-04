@@ -10,18 +10,18 @@ Room::Room() {
 
 }
 
-bool Room::set_id(string id) {
-    this->id = id;
+bool Room::set_id(string newid) {
+    this->id = newid;
     return true;
 }
 
-bool Room::set_desc(string desc) {
-    this->desc = desc;
+bool Room::set_desc(string newdesc) {
+    this->desc = newdesc;
     return true;
 }
 
-bool Room::set_exits(json exits) {
-    this->exits = exits;
+bool Room::set_exits(json newexits) {
+    this->exits = newexits;
     return true;
 }
 
@@ -51,6 +51,7 @@ string Room::print() {
     for (int i = 0; i < items.size(); i++) {
         output += items.at(i).print() + "\n";
     }
+    output += player.print();
     return output;
 }
 
@@ -61,4 +62,15 @@ bool Room::add_item(Item item) {
 
 vector<Item> Room::get_items() {
     return items;
+}
+
+
+
+Player Room::get_player() {
+    return player;
+}
+
+bool Room::add_player(Player player) {
+    this->player = player;
+    return true;
 }

@@ -14,16 +14,19 @@ using namespace std;
 class Map {
 
 public:
-    Map();
+    Map(Player player);
     int get_room_count();
     bool add_room(Room room);
     Room get_room(string id);
     int get_room_id(string id);
+    bool add_player(Player player);
     string print();
     vector<Room> rooms;
+    Player player;
 private:
     int room_count;
     map<string, int> room_ids;
+
 };
 
 

@@ -22,7 +22,6 @@ void take(Map &map, string input) {
         map.player.add_item(I);
         cout << "You have taken " << input << endl;
     }
-    return;
 }
 
 void kill(Map &map, string input){
@@ -30,7 +29,11 @@ void kill(Map &map, string input){
 }
 
 void look(Map &map, string input) {
-    cout << "look";
+    string lookOutput;
+    if (input == "around" or input.empty()) {
+        lookOutput = map.rooms[map.get_room_id(map.player.get_room())].print();
+    }
+    cout << lookOutput << endl;
 }
 
 
@@ -64,7 +67,7 @@ void player_choice(Map map) {
             go(map, input2);
             break;
         case 2: // Command: look
-            cout << "look true";
+            look(map, input2);
             break;
         case 3: // Command: take
             take(map, input2);

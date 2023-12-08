@@ -33,8 +33,24 @@ void look(Map &map, string input) {
     cout << "look";
 }
 
+void list(Map &map, string input) {
+    if (input == "items") {
+        if (map.player.get_items().empty()) {
+            cout << "You have no items" << endl;
+            return;
+        }else{
+            cout << "You have the following items: " << endl;
+            for (int i = 0; i < map.player.get_items().size(); i++) {
+                cout << map.player.get_items().at(i).get_id() << endl;
+            }
+        }
+    }else{
+        cout<<"list what???"<<endl;
+    }
+}
 
-void player_choice(Map map) {
+
+void player_choice(Map &map) {
     string playerInput;
     string input1; // Player
     string input2; // Command parameter
@@ -43,7 +59,8 @@ void player_choice(Map map) {
             {"go", 1},
             {"look", 2},
             {"take", 3},
-            {"kill", 4}
+            {"kill", 4},
+            {"list", 5}
              };
 
     cout << "What do you want to do?" << endl;
@@ -57,7 +74,7 @@ void player_choice(Map map) {
         inputStream >> tempInput;
         input2 += tempInput;
     } // Splits the input string into the command and the parameter
-    cout << input1 << endl << input2 << endl;
+//    cout << input1 << endl << input2 << endl;
 
     switch (inputHash[input1]) {
         case 1: // Command: go
@@ -71,6 +88,12 @@ void player_choice(Map map) {
             break;
         case 4: // Command: kill
             cout << "kill true";
+            break;
+        case 5: // Command: list
+            list(map, input2);
+            break;
+        default:
+            cout << "Command not found" << endl;
             break;
     }
 }

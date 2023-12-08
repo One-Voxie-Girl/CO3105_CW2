@@ -104,3 +104,19 @@ string Room::get_exit(string direction) {
 string Room::get_desc() {
     return desc;
 }
+
+vector<string> Room::get_enemies_ids() {
+    vector<string> ids;
+    for (int i = 0; i < enemies.size(); i++) {
+        ids.push_back(enemies.at(i).get_id());
+    }
+    return ids;
+}
+
+vector<string> Room::get_items_ids() {
+    vector<string> ids;
+    for (int i = 0; i < items.size(); i++) {
+        ids.push_back(items.at(i).get_id());
+    }
+    return ids;
+}

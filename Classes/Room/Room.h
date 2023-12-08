@@ -33,6 +33,8 @@ public:
     string print();
     string get_exit(string direction);
     string get_desc();
+    vector<string> get_enemies_ids();
+    vector<string> get_items_ids();
 
 
 private:

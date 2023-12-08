@@ -42,18 +42,15 @@ vector<Enemy> Room::get_enemies() {
 
 string Room::print() {
     string output = "";
-    output += "Room: "+id+"\n";
     output += "Desc: "+desc+"\n";
-    output += "Exits: \n";
-    output += "Enemies: "+to_string(enemies.size())+"\n";
-    for (int i = 0; i < enemies.size(); i++) {
-        output += enemies.at(i).print() + "\n";
-    }
     output += "Items: "+to_string(items.size())+"\n";
     for (int i = 0; i < items.size(); i++) {
         output += items.at(i).print() + "\n";
     }
-
+    output += "Enemies: "+to_string(enemies.size())+"\n";
+    for (int i = 0; i < enemies.size(); i++) {
+        output += enemies.at(i).print() + "\n";
+    }
     return output;
 }
 
@@ -74,6 +71,7 @@ Item Room::pop_item(string id) {
             return item;
         }
     }
+    return Item("null","");
 
 }
 
@@ -93,4 +91,8 @@ map<string, string> Room::get_exits() {
 
 string Room::get_exit(string direction) {
     return exits[direction];
+}
+
+string Room::get_desc() {
+    return desc;
 }

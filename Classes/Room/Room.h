@@ -32,6 +32,7 @@ public:
     vector<Enemy> get_enemies();
     string print();
     string get_exit(string direction);
+    string get_desc();
 
 
 private:

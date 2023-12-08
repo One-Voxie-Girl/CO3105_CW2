@@ -4,7 +4,9 @@
 
 #include "Map.h"
 
-Map::Map() {
+#include <utility>
+
+Map::Map(Player player) : player(std::move(player)) {
     room_count = 0;
 
 
@@ -36,6 +38,11 @@ string Map::print() {
         output += rooms.at(i).print() + "\n";
     }
     return output;
+}
+
+bool Map::add_player(Player player) {
+    this->player = player;
+    return true;
 }
 
 

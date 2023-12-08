@@ -13,7 +13,7 @@ using namespace std;
 
 class Enemy {
 public:
-    Enemy();
+    Enemy(string id, string desc, int aggression, vector<string> killedBy);
     bool set_id(string id);
     bool set_desc(string desc);
     bool set_aggression(int aggression);

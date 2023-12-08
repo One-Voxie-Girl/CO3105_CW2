@@ -4,8 +4,9 @@
 
 #include "Item.h"
 
-Item::Item() {
-
+Item::Item(string id, string desc) {
+    this->id = id;
+    this->desc = desc;
 }
 
 bool Item::set_id(string id) {

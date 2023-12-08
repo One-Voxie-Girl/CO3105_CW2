@@ -4,10 +4,12 @@
 
 #include "Room.h"
 
-Room::Room() {
 
 
-
+Room::Room(string id, string desc, map<string, string> exits) {
+    this->id = id;
+    this->desc = desc;
+    this->exits = exits;
 }
 
 bool Room::set_id(string newid) {
@@ -42,7 +44,7 @@ string Room::print() {
     string output = "";
     output += "Room: "+id+"\n";
     output += "Desc: "+desc+"\n";
-    output += "Exits: "+exits.dump()+"\n";
+    output += "Exits: \n";
     output += "Enemies: "+to_string(enemies.size())+"\n";
     for (int i = 0; i < enemies.size(); i++) {
         output += enemies.at(i).print() + "\n";
@@ -51,7 +53,7 @@ string Room::print() {
     for (int i = 0; i < items.size(); i++) {
         output += items.at(i).print() + "\n";
     }
-    output += player.print();
+
     return output;
 }
 
@@ -64,13 +66,31 @@ vector<Item> Room::get_items() {
     return items;
 }
 
+Item Room::pop_item(string id) {
+    for (int i = 0; i < items.size(); i++) {
+        if (items.at(i).get_id() == id) {
+            Item item = items.at(i);
+            items.erase(items.begin()+i);
+            return item;
+        }
+    }
 
-
-Player Room::get_player() {
-    return player;
 }
 
-bool Room::add_player(Player player) {
-    this->player = player;
-    return true;
+Enemy Room::pop_enemy(string id) {
+    for (int i = 0; i < enemies.size(); i++) {
+        if (enemies.at(i).get_id() == id) {
+            Enemy enemy = enemies.at(i);
+            enemies.erase(enemies.begin()+i);
+            return enemy;
+        }
+    }
+}
+
+map<string, string> Room::get_exits() {
+    return exits;
+}
+
+string Room::get_exit(string direction) {
+    return exits[direction];
 }

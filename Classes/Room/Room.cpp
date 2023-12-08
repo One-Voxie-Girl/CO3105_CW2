@@ -43,13 +43,21 @@ vector<Enemy> Room::get_enemies() {
 string Room::print() {
     string output = "";
     output += "Desc: "+desc+"\n";
-    output += "Items: "+to_string(items.size())+"\n";
+    output += "Items: ";
     for (int i = 0; i < items.size(); i++) {
-        output += items.at(i).print() + "\n";
+        if (i == items.size()-1) {
+            output += items.at(i).get_id();
+            break;
+        }
+        output += items.at(i).get_id() + ",";
     }
-    output += "Enemies: "+to_string(enemies.size())+"\n";
+    output += "Enemies: ";
     for (int i = 0; i < enemies.size(); i++) {
-        output += enemies.at(i).print() + "\n";
+        if (i == enemies.size()-1) {
+            output += enemies.at(i).get_id();
+            break;
+        }
+        output += enemies.at(i).get_id() + ", ";
     }
     return output;
 }

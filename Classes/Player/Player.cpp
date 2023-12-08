@@ -4,8 +4,8 @@
 
 #include "Player.h"
 
-Player::Player() {
-
+Player::Player(string room) {
+    this->room = room;
 }
 
 string Player::set_room(string room) {

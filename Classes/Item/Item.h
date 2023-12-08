@@ -12,7 +12,7 @@ using namespace std;
 
 class Item {
 public:
-    Item();
+    Item(string id, string desc);
     bool set_id(string id);
     bool set_desc(string desc);
     string get_id();

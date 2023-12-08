@@ -14,7 +14,7 @@ using namespace std;
 
 class Player {
 public:
-    Player();
+    Player(string room);
     string set_room(string room);
     string get_room();
     bool add_item(Item item);

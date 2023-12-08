@@ -17,15 +17,16 @@ using json = nlohmann::json;
 
 class Room {
 public:
-    Room();
+
+    Room(string id, string desc, json exits);
     bool set_id(string id);
     bool set_desc(string desc);
     bool set_exits(json exits);
     string get_id();
     bool add_enemy(Enemy enemy);
     bool add_item(Item item);
-    bool add_player(Player player);
-    Player get_player();
+
+
     vector<Item> get_items();
     vector<Enemy> get_enemies();
     string print();
@@ -36,7 +37,7 @@ private:
     json exits;
     vector<Enemy> enemies;
     vector<Item> items;
-    Player player;
+
 };
 
 

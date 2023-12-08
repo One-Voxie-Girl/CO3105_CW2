@@ -4,8 +4,11 @@
 
 #include "Enemy.h"
 
-Enemy::Enemy() {
-    aggression = 0;
+Enemy::Enemy(string id, string desc, int aggression, vector<string> killedBy) {
+    this->id = id;
+    this->desc = desc;
+    this->aggression = aggression;
+    this->killedBy = killedBy;
 }
 
 bool Enemy::set_id(string id) {

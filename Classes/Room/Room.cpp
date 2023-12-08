@@ -4,10 +4,12 @@
 
 #include "Room.h"
 
-Room::Room() {
 
 
-
+Room::Room(string id, string desc, json exits) {
+    this->id = id;
+    this->desc = desc;
+    this->exits = exits;
 }
 
 bool Room::set_id(string newid) {
@@ -51,7 +53,7 @@ string Room::print() {
     for (int i = 0; i < items.size(); i++) {
         output += items.at(i).print() + "\n";
     }
-    output += player.print();
+
     return output;
 }
 
@@ -65,12 +67,3 @@ vector<Item> Room::get_items() {
 }
 
 
-
-Player Room::get_player() {
-    return player;
-}
-
-bool Room::add_player(Player player) {
-    this->player = player;
-    return true;
-}

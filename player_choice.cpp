@@ -1,5 +1,22 @@
 #include "player_choice.h"
 
+void go(Map map, string input) {
+    cout << "go";
+}
+
+void take(Map map, string input) {
+    cout << "take";
+}
+
+void kill(Map map, string input){
+    cout << "kill";
+}
+
+void look(Map map, string input) {
+    cout << map.get_room(map.player.get_current_room()).get_desc() << endl;
+}
+
+
 void player_choice(Map map) {
     string playerInput;
     string input1; // Player

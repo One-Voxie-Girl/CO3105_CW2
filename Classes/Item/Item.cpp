@@ -7,3 +7,28 @@
 Item::Item() {
 
 }
+
+bool Item::set_id(string id) {
+    this->id = id;
+    return true;
+}
+
+bool Item::set_desc(string desc) {
+    this->desc = desc;
+    return true;
+}
+
+string Item::get_id() {
+    return id;
+}
+
+string Item::get_desc() {
+    return desc;
+}
+
+string Item::print() {
+    string output = "";
+    output += "Item: "+id+"\n";
+    output += "Desc: "+desc+"\n";
+    return output;
+}

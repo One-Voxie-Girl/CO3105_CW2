@@ -2,8 +2,8 @@
 
 void player_choice(Map map) {
     string playerInput;
-    string input1;
-    string input2;
+    string input1; // Player
+    string input2; // Command parameter
 
     std::map<string, int> inputHash = {
             {"go", 1},

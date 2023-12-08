@@ -30,9 +30,15 @@ void kill(Map &map, string input){
 
 void look(Map &map, string input) {
     string lookOutput;
+    vector<string> lookEnemies = map.rooms[map.get_room_id(map.player.get_room())].get_enemies_ids();
+    vector<string> lookItems = map.rooms[map.get_room_id(map.player.get_room())].get_items_ids();
     if (input == "around" or input.empty()) {
         lookOutput = map.rooms[map.get_room_id(map.player.get_room())].print();
-    }
+    } else if (find(lookEnemies.begin(), lookEnemies.end(), input) != lookEnemies.end()) {
+            cout << "Kill yourself";
+    } else if (find(lookItems.begin(), lookItems.end(), input) != lookItems.end()) {
+           cout << "BITE ME!";
+        }
     cout << lookOutput << endl;
 }
 

@@ -33,8 +33,15 @@ void look(Map &map, string input) {
     cout << "look";
 }
 
+void list(Map &map) {
+    cout << "You have the following items: " << endl;
+    for (int i = 0; i < map.player.get_items().size(); i++) {
+        cout << map.player.get_items().at(i).get_id() << endl;
+    }
+}
 
-void player_choice(Map map) {
+
+void player_choice(Map &map) {
     string playerInput;
     string input1; // Player
     string input2; // Command parameter
@@ -43,7 +50,8 @@ void player_choice(Map map) {
             {"go", 1},
             {"look", 2},
             {"take", 3},
-            {"kill", 4}
+            {"kill", 4},
+            {"list", 5}
              };
 
     cout << "What do you want to do?" << endl;
@@ -71,6 +79,9 @@ void player_choice(Map map) {
             break;
         case 4: // Command: kill
             cout << "kill true";
+            break;
+        case 5: // Command: list
+            list(map);
             break;
     }
 }

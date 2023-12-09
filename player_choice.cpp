@@ -25,7 +25,24 @@ void take(Map &map, string input) {
 }
 
 void kill(Map &map, string input){
-    cout << "kill";
+    vector<string> lookEnemies = map.rooms[map.get_room_id(map.player.get_room())].get_enemies_ids();
+    if (find(lookEnemies.begin(), lookEnemies.end(), input) != lookEnemies.end()) {
+        Enemy E= map.rooms[map.get_room_id(map.player.get_room())].get_enemy(input);
+        int killedBySize = E.get_killed_by().size();
+        for (int i = 0; i < map.player.get_items().size(); i++) {
+            if (find(E.get_killed_by().begin(), E.get_killed_by().end(), map.player.get_items().at(i).get_id()) != E.get_killed_by().end()) {
+                killedBySize--;
+            }
+        }
+        if (killedBySize == 0) {
+            cout << "You have killed " << input << endl;
+            map.rooms[map.get_room_id(map.player.get_room())].pop_enemy(input);
+        } else {
+            cout << "You do not have the required items to kill " << input << "\nThe enemy retaliates"<< endl;
+        }
+    } else {
+        cout << "Enemy not found" << endl;
+    }
 }
 
 void look(Map &map, string input) {
@@ -98,7 +115,7 @@ void player_choice(Map &map) {
             take(map, input2);
             break;
         case 4: // Command: kill
-            cout << "kill true";
+            kill(map, input2);
             break;
         case 5: // Command: list
             list(map, input2);

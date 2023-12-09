@@ -43,7 +43,7 @@ int Enemy::get_aggression() {
     return aggression;
 }
 
-vector<string> Enemy::get_killedBy() {
+vector<string> Enemy::get_killed_by() {
     return killedBy;
 }
 

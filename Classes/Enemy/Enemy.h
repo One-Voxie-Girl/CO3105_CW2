@@ -21,7 +21,7 @@ public:
     string get_id();
     string get_desc();
     int get_aggression();
-    vector<string> get_killedBy();
+    vector<string> get_killed_by();
     string print();
 
 private:

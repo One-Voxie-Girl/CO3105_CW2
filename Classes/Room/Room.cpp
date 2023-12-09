@@ -43,13 +43,21 @@ vector<Enemy> Room::get_enemies() {
 string Room::print() {
     string output = "";
     output += "Desc: "+desc+"\n";
-    output += "Items: "+to_string(items.size())+"\n";
+    output += "Items: ";
     for (int i = 0; i < items.size(); i++) {
-        output += items.at(i).print() + "\n";
+        if (i == items.size()-1) {
+            output += items.at(i).get_id();
+            break;
+        }
+        output += items.at(i).get_id() + ",";
     }
-    output += "Enemies: "+to_string(enemies.size())+"\n";
+    output += "\nEnemies: ";
     for (int i = 0; i < enemies.size(); i++) {
-        output += enemies.at(i).print() + "\n";
+        if (i == enemies.size()-1) {
+            output += enemies.at(i).get_id();
+            break;
+        }
+        output += enemies.at(i).get_id() + ", ";
     }
     return output;
 }
@@ -95,4 +103,36 @@ string Room::get_exit(string direction) {
 
 string Room::get_desc() {
     return desc;
+}
+
+vector<string> Room::get_enemies_ids() {
+    vector<string> ids;
+    for (int i = 0; i < enemies.size(); i++) {
+        ids.push_back(enemies.at(i).get_id());
+    }
+    return ids;
+}
+
+vector<string> Room::get_items_ids() {
+    vector<string> ids;
+    for (int i = 0; i < items.size(); i++) {
+        ids.push_back(items.at(i).get_id());
+    }
+    return ids;
+}
+
+Enemy Room::get_enemy(string id){
+    for (int i = 0; i<enemies.size();i++){
+        if (enemies[i].get_id()==id){
+            return enemies[i];
+        }
+    }
+}
+
+Item Room::get_item(string id){
+    for (int i = 0; i<items.size();i++){
+        if (items[i].get_id()==id){
+            return items[i];
+        }
+    }
 }

@@ -120,3 +120,19 @@ vector<string> Room::get_items_ids() {
     }
     return ids;
 }
+
+Enemy Room::get_enemy(string id){
+    for (int i = 0; i<enemies.size();i++){
+        if (enemies[i].get_id()==id){
+            return enemies[i];
+        }
+    }
+}
+
+Item Room::get_item(string id){
+    for (int i = 0; i<items.size();i++){
+        if (items[i].get_id()==id){
+            return items[i];
+        }
+    }
+}

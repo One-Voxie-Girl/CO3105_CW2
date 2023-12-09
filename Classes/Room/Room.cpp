@@ -51,7 +51,7 @@ string Room::print() {
         }
         output += items.at(i).get_id() + ",";
     }
-    output += "Enemies: ";
+    output += "\nEnemies: ";
     for (int i = 0; i < enemies.size(); i++) {
         if (i == enemies.size()-1) {
             output += enemies.at(i).get_id();

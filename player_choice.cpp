@@ -88,7 +88,8 @@ void player_choice(Map &map) {
             {"look", 2},
             {"take", 3},
             {"kill", 4},
-            {"list", 5}
+            {"list", 5},
+            {"move", 1}
              };
 
     cout << "What do you want to do?" << endl;

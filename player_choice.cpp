@@ -35,10 +35,12 @@ void look(Map &map, string input) {
     if (input == "around" or input.empty()) {
         lookOutput = map.rooms[map.get_room_id(map.player.get_room())].print();
     } else if (find(lookEnemies.begin(), lookEnemies.end(), input) != lookEnemies.end()) {
-            cout << "Kill yourself";
+        lookOutput = map.rooms[map.get_room_id(map.player.get_room())].get_enemy(input).get_desc();
     } else if (find(lookItems.begin(), lookItems.end(), input) != lookItems.end()) {
-           cout << "BITE ME!";
-        }
+        lookOutput = map.rooms[map.get_room_id(map.player.get_room())].get_item(input).get_desc();
+    } else {
+        lookOutput = "No item/enemy of that name";
+    }
     cout << lookOutput << endl;
 }
 

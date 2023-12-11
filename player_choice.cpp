@@ -7,6 +7,19 @@ void go(Map &map, string input) {
     if  (roomid==""){
         cout << "exit not found" << endl;
     } else {
+        vector<string> goEnemies = map.rooms[map.get_room_id(map.player.get_room())].get_enemies_ids();
+        if (!goEnemies.empty()) {
+            for (int i = 0; i < goEnemies.size(); i++) {
+                if (map.rooms[map.get_room_id(map.player.get_room())].get_enemy(goEnemies[i]).attack()) {
+                    cout << goEnemies[i] << " attacked you when trying to leave the room" << endl;
+                    map.player.set_health(map.player.get_health()-1);
+                    cout << "Current health: " << map.player.get_health() << endl;
+                    if (map.player.get_health() < 1) {
+                        break;
+                    }
+                }
+            }
+        }
         map.player.set_room(roomid);
         if (map.objective.get_type()=="room"){
             map.objective.remove_target(roomid);

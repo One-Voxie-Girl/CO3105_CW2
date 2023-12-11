@@ -15,7 +15,7 @@ void go(Map &map, string input) {
                     map.player.set_health(map.player.get_health()-1);
                     cout << "Current health: " << map.player.get_health() << endl;
                     if (map.player.get_health() < 1) {
-                        break;
+                        return;
                     }
                 }
             }

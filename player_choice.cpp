@@ -7,6 +7,19 @@ void go(Map &map, string input) {
     if  (roomid==""){
         cout << "exit not found" << endl;
     } else {
+        vector<string> goEnemies = map.rooms[map.get_room_id(map.player.get_room())].get_enemies_ids();
+        if (!goEnemies.empty()) {
+            for (int i = 0; i < goEnemies.size(); i++) {
+                if (map.rooms[map.get_room_id(map.player.get_room())].get_enemy(goEnemies[i]).attack()) {
+                    cout << goEnemies[i] << " attacked you when trying to leave the room" << endl;
+                    map.player.set_health(map.player.get_health()-1);
+                    cout << "Current health: " << map.player.get_health() << endl;
+                    if (map.player.get_health() < 1) {
+                        return;
+                    }
+                }
+            }
+        }
         map.player.set_room(roomid);
         if (map.objective.get_type()=="room"){
             map.objective.remove_target(roomid);
@@ -35,9 +48,12 @@ void kill(Map &map, string input){
     vector<string> lookEnemies = map.rooms[map.get_room_id(map.player.get_room())].get_enemies_ids();
     if (find(lookEnemies.begin(), lookEnemies.end(), input) != lookEnemies.end()) {
         Enemy E= map.rooms[map.get_room_id(map.player.get_room())].get_enemy(input);
+        vector<string> killedby=E.get_killed_by();
+
         int killedBySize = E.get_killed_by().size();
         for (int i = 0; i < map.player.get_items().size(); i++) {
-            if (find(E.get_killed_by().begin(), E.get_killed_by().end(), map.player.get_items().at(i).get_id()) != E.get_killed_by().end()) {
+
+            if (find(killedby.begin(), killedby.end(), map.player.get_items().at(i).get_id()) != killedby.end()) {
                 killedBySize--;
             }
         }
@@ -49,6 +65,8 @@ void kill(Map &map, string input){
             map.rooms[map.get_room_id(map.player.get_room())].pop_enemy(input);
         } else {
             cout << "You do not have the required items to kill " << input << "\nThe enemy retaliates"<< endl;
+            map.player.set_health(map.player.get_health()-1);
+            cout << "Current health: " << map.player.get_health() << endl;
         }
     } else {
         cout << "Enemy not found" << endl;
@@ -87,7 +105,6 @@ void list(Map &map, string input) {
     }
 }
 
-
 void player_choice(Map &map) {
     string playerInput;
     string input1; // Player
@@ -113,7 +130,6 @@ void player_choice(Map &map) {
         inputStream >> tempInput;
         input2 += tempInput;
     } // Splits the input string into the command and the parameter
-//    cout << input1 << endl << input2 << endl;
 
     switch (inputHash[input1]) {
         case 1: // Command: go
@@ -135,5 +151,4 @@ void player_choice(Map &map) {
             cout << "Command not found" << endl;
             break;
     }
-    map.objective.check_obj(map.player);
 }

@@ -23,6 +23,7 @@ public:
     int get_aggression();
     vector<string> get_killed_by();
     string print();
+    bool attack();
 
 private:
     string id;

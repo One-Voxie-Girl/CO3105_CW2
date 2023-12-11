@@ -20,4 +20,5 @@ add_executable(CO3105_CW2 main.cpp
         Classes/Item/Item.h
         player_choice.cpp
         player_choice.h
+        Classes/Objective/Objective.cpp
 )

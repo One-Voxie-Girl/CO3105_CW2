@@ -36,6 +36,15 @@ vector<Item> Player::get_items() {
     return items;
 }
 
+bool Player::set_health(int inputHealth) {
+    health = inputHealth;
+    return true;
+}
+
+int Player::get_health() {
+    return health;
+}
+
 string Player::print() {
     string output = "";
     output += "Player: "+room+"\n";

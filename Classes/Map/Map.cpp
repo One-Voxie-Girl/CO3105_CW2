@@ -6,7 +6,7 @@
 
 #include <utility>
 
-Map::Map(Player player) : player(std::move(player)) {
+Map::Map(Player player, Objective objective) : player(std::move(player)), objective(objective) {
     room_count = 0;
 
 
@@ -45,4 +45,7 @@ bool Map::add_player(Player player) {
     return true;
 }
 
-
+bool Map::add_objective(Objective objective) {
+    this->objective=objective;
+    return true;
+}

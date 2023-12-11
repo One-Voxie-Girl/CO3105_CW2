@@ -18,7 +18,8 @@ json read_map_data(string filename) {
 // Initialise Map from json data
 Map init_map(json data) {
     Player player(data["player"]["initialroom"]);
-    Map map(player);
+    Objective obj(data["objective"]["type"],data["objective"]["what"]);
+    Map map(player,obj);
 
     for (auto r:data["rooms"]){
         std::map<string,string> q;
@@ -37,6 +38,8 @@ Map init_map(json data) {
         Item item(o["id"], o["desc"]);
         map.rooms[map.get_room_id(o["initialroom"])].add_item(item);
     }
+
+
 
     return map;
 }

@@ -8,6 +8,9 @@ void go(Map &map, string input) {
         cout << "exit not found" << endl;
     } else {
         map.player.set_room(roomid);
+        if (map.objective.get_type()=="room"){
+            map.objective.remove_target(roomid);
+        }
         cout << map.rooms[map.get_room_id(map.player.get_room())].print() << endl;
     }
 }
@@ -20,7 +23,11 @@ void take(Map &map, string input) {
 
     } else {
         map.player.add_item(I);
+
         cout << "You have taken " << input << endl;
+        if (map.objective.get_type()=="collect") {
+            map.objective.remove_target(input);
+        }
     }
 }
 
@@ -36,6 +43,9 @@ void kill(Map &map, string input){
         }
         if (killedBySize == 0) {
             cout << "You have killed " << input << endl;
+            if (map.objective.get_type()=="kill") {
+                map.objective.remove_target(input);
+            }
             map.rooms[map.get_room_id(map.player.get_room())].pop_enemy(input);
         } else {
             cout << "You do not have the required items to kill " << input << "\nThe enemy retaliates"<< endl;
@@ -90,7 +100,7 @@ void player_choice(Map &map) {
             {"kill", 4},
             {"list", 5},
             {"move", 1}
-             };
+    };
 
     cout << "What do you want to do?" << endl;
     getline(cin, playerInput);
@@ -125,4 +135,5 @@ void player_choice(Map &map) {
             cout << "Command not found" << endl;
             break;
     }
+    map.objective.check_obj(map.player);
 }

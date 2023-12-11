@@ -10,6 +10,8 @@ add_executable(CO3105_CW2 main.cpp
         Classes/Enemy/Enemy.h
         Classes/Map/Map.cpp
         Classes/Map/Map.h
+        Classes/Objective/Objective.cpp
+        Classes/Objective/Objective.h
         Classes/Player/Player.cpp
         Classes/Player/Player.h
         Classes/Room/Room.cpp

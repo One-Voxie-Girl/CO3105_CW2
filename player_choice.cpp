@@ -52,6 +52,8 @@ void kill(Map &map, string input){
             map.rooms[map.get_room_id(map.player.get_room())].pop_enemy(input);
         } else {
             cout << "You do not have the required items to kill " << input << "\nThe enemy retaliates"<< endl;
+            map.player.set_health(map.player.get_health()-1);
+            cout << "Current health: " << map.player.get_health() << endl;
         }
     } else {
         cout << "Enemy not found" << endl;
@@ -90,7 +92,6 @@ void list(Map &map, string input) {
     }
 }
 
-
 void player_choice(Map &map) {
     string playerInput;
     string input1; // Player
@@ -116,7 +117,6 @@ void player_choice(Map &map) {
         inputStream >> tempInput;
         input2 += tempInput;
     } // Splits the input string into the command and the parameter
-//    cout << input1 << endl << input2 << endl;
 
     switch (inputHash[input1]) {
         case 1: // Command: go
@@ -138,5 +138,4 @@ void player_choice(Map &map) {
             cout << "Command not found" << endl;
             break;
     }
-    map.objective.check_obj(map.player);
 }

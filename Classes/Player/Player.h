@@ -1,6 +1,3 @@
-//
-// Created by Temmie on 28/11/2023.
-//
 #ifndef CO3105_CW2_PLAYER_H
 #define CO3105_CW2_PLAYER_H
 
@@ -21,12 +18,15 @@ public:
     bool remove_item(Item item);
     vector<Item> get_items();
     string print();
+    bool set_health(int inputHealth);
+    int get_health();
 
 
 
 private:
     string room;
     vector<Item> items;
+    int health = 1;
 };
 
 

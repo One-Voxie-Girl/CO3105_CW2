@@ -47,6 +47,10 @@ vector<string> Enemy::get_killed_by() {
     return killedBy;
 }
 
+bool Enemy::attack() {
+    return ((rand() % 100) > aggression);
+}
+
 string Enemy::print() {
     string output = "";
     output += "Enemy Name: "+id+"\n";

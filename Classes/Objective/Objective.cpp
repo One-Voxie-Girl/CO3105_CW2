@@ -29,7 +29,7 @@ vector<string> Objective::get_targets() {
 bool Objective::remove_target(string tar) {
     for (int i = 0; i < targets.size(); i++) {
         if (targets.at(i) == tar) {
-            targets.erase(targets.begin()+1);
+            targets.erase(targets.begin());
             return true;
         }
     }

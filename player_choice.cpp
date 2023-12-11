@@ -35,9 +35,12 @@ void kill(Map &map, string input){
     vector<string> lookEnemies = map.rooms[map.get_room_id(map.player.get_room())].get_enemies_ids();
     if (find(lookEnemies.begin(), lookEnemies.end(), input) != lookEnemies.end()) {
         Enemy E= map.rooms[map.get_room_id(map.player.get_room())].get_enemy(input);
+        vector<string> killedby=E.get_killed_by();
+
         int killedBySize = E.get_killed_by().size();
         for (int i = 0; i < map.player.get_items().size(); i++) {
-            if (find(E.get_killed_by().begin(), E.get_killed_by().end(), map.player.get_items().at(i).get_id()) != E.get_killed_by().end()) {
+
+            if (find(killedby.begin(), killedby.end(), map.player.get_items().at(i).get_id()) != killedby.end()) {
                 killedBySize--;
             }
         }

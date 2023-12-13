@@ -1,7 +1,3 @@
-//
-// Created by Temmie on 27/11/2023.
-//
-
 #include "map_parser.h"
 
 // read Map data from file

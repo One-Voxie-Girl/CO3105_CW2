@@ -35,7 +35,7 @@ Map init_map(json data) {
     }
 
     for (auto o:data["objects"]){
-        string t=o["type"];
+        string t="";
         try {
             t = o["type"];
 

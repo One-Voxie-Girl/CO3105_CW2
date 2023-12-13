@@ -4,12 +4,12 @@ void go(Map &map, string input) {
     string roomid="";
     std::map<string, string> ex= map.rooms[map.get_room_id(map.player.get_room())].get_exits();
     roomid=ex[input];
-    if  (roomid==""){
+    if  (roomid==""){ // Checks direction exists
         cout << "exit not found" << endl;
     } else {
         vector<string> goEnemies = map.rooms[map.get_room_id(map.player.get_room())].get_enemies_ids();
-        if (!goEnemies.empty()) {
-            for (int i = 0; i < goEnemies.size(); i++) {
+        if (!goEnemies.empty()) { // Checks if there are enemies in room
+            for (int i = 0; i < goEnemies.size(); i++) { // Enemy attack chance
                 if (map.rooms[map.get_room_id(map.player.get_room())].get_enemy(goEnemies[i]).attack()) {
                     cout << goEnemies[i] << " attacked you when trying to leave the room" << endl;
                     map.player.set_health(map.player.get_health()-1);
@@ -21,7 +21,7 @@ void go(Map &map, string input) {
             }
         }
         map.player.set_room(roomid);
-        if (map.objective.get_type()=="room"){
+        if (map.objective.get_type()=="room"){ // Checks if entering room was objective
             map.objective.remove_target(roomid);
         }
         cout << map.rooms[map.get_room_id(map.player.get_room())].print() << endl;
@@ -34,11 +34,11 @@ void take(Map &map, string input) {
     if (I.get_id() == "null") {
         cout << "Item not found" << endl;
 
-    } else {
+    } else { // Add item to inventory
         map.player.add_item(I);
 
         cout << "You have taken " << input << endl;
-        if (map.objective.get_type()=="collect") {
+        if (map.objective.get_type()=="collect") { // Checks if item is objective
             map.objective.remove_target(input);
         }
     }
@@ -46,7 +46,7 @@ void take(Map &map, string input) {
 
 void kill(Map &map, string input){
     vector<string> lookEnemies = map.rooms[map.get_room_id(map.player.get_room())].get_enemies_ids();
-    if (find(lookEnemies.begin(), lookEnemies.end(), input) != lookEnemies.end()) {
+    if (find(lookEnemies.begin(), lookEnemies.end(), input) != lookEnemies.end()) { // Checks enemy in room
         Enemy E= map.rooms[map.get_room_id(map.player.get_room())].get_enemy(input);
         vector<string> killedby=E.get_killed_by();
         vector<Item> ammoItems;
@@ -62,9 +62,9 @@ void kill(Map &map, string input){
                 killedBySize--;
             }
         }
-        if (killedBySize == 0) {
+        if (killedBySize == 0) { // Successful kill
             cout << "You have killed " << input << endl;
-            if (ammoItems.size() > 0) {
+            if (ammoItems.size() > 0) { // Checks if ammo was used
                 string ammoUsed="You used the following ammo: ";
                 for (int i = 0; i < ammoItems.size(); i++) {
                     if (i == ammoItems.size()-1) {
@@ -78,16 +78,16 @@ void kill(Map &map, string input){
                 cout << ammoUsed << endl;
             }
 
-            if (map.objective.get_type()=="kill") {
+            if (map.objective.get_type()=="kill") { // Checks if kill was part of objectives
                 map.objective.remove_target(input);
             }
             map.rooms[map.get_room_id(map.player.get_room())].pop_enemy(input);
-        } else {
+        } else { // Enemy retaliates for unsuccessful kill
             cout << "You do not have the required items to kill " << input << "\nThe enemy retaliates"<< endl;
             map.player.set_health(map.player.get_health()-1);
             cout << "Current health: " << map.player.get_health() << endl;
         }
-    } else {
+    } else { // Enemy inputted is not in room
         cout << "Enemy not found" << endl;
     }
 }
@@ -96,11 +96,11 @@ void look(Map &map, string input) {
     string lookOutput;
     vector<string> lookEnemies = map.rooms[map.get_room_id(map.player.get_room())].get_enemies_ids();
     vector<string> lookItems = map.rooms[map.get_room_id(map.player.get_room())].get_items_ids();
-    if (input == "around" or input.empty()) {
+    if (input == "around" or input.empty()) { // Prints room description
         lookOutput = map.rooms[map.get_room_id(map.player.get_room())].print();
-    } else if (find(lookEnemies.begin(), lookEnemies.end(), input) != lookEnemies.end()) {
+    } else if (find(lookEnemies.begin(), lookEnemies.end(), input) != lookEnemies.end()) { // Check Enemies
         lookOutput = map.rooms[map.get_room_id(map.player.get_room())].get_enemy(input).get_desc();
-    } else if (find(lookItems.begin(), lookItems.end(), input) != lookItems.end()) {
+    } else if (find(lookItems.begin(), lookItems.end(), input) != lookItems.end()) { // Checks Items
         lookOutput = map.rooms[map.get_room_id(map.player.get_room())].get_item(input).get_desc();
     } else {
         lookOutput = "No item/enemy of that name";
@@ -109,7 +109,7 @@ void look(Map &map, string input) {
 }
 
 void list(Map &map, string input) {
-    if (input == "items") {
+    if (input == "items") { // List all of the items in player inventory
         if (map.player.get_items().empty()) {
             cout << "You have no items" << endl;
             return;
@@ -120,16 +120,16 @@ void list(Map &map, string input) {
             }
         }
     }else{
-        cout<<"list what???"<<endl;
+        cout<<"list what?"<<endl;
     }
 }
 
 void player_choice(Map &map) {
-    string playerInput;
+    string playerInput; // Raw player input
     string input1; // Player
     string input2; // Command parameter
 
-    std::map<string, int> inputHash = {
+    std::map<string, int> inputHash = { // Converts player command
             {"go", 1},
             {"look", 2},
             {"take", 3},
@@ -166,7 +166,7 @@ void player_choice(Map &map) {
         case 5: // Command: list
             list(map, input2);
             break;
-        default:
+        default: // Command unknown
             cout << "Command not found" << endl;
             break;
     }

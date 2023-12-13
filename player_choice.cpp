@@ -75,6 +75,7 @@ void kill(Map &map, string input){
                     ammoUsed += ammoItems.at(i).get_id() + ", ";
                     map.player.remove_item(ammoItems.at(i));
                 }
+                cout << ammoUsed << endl;
             }
 
             if (map.objective.get_type()=="kill") {

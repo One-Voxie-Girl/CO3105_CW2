@@ -37,10 +37,10 @@ Map init_map(json data) {
     for (auto o:data["objects"]){
         string t=o["type"];
         try {
-            string t = o["type"];
+            t = o["type"];
 
         } catch (nlohmann::detail::type_error &e) {
-            string t="";
+            t="";
         }
 
         Item item(o["id"], o["desc"],t);

@@ -3,15 +3,20 @@
 #include "map_parser.h"
 #include "Classes/Map/Map.h"
 #include "player_choice.h"
+namespace fs = filesystem;
 
 int main(int argc, char* argv[]) {
     string path = "..\\maps\\";
     string mapSelection;
     cout << "LIST OF AVAILABLE MAPS:" << endl;
-    for (const auto & entry : filesystem::directory_iterator(path))
+    for (const auto & entry : fs::directory_iterator(path))
         cout << entry.path().stem().string() << endl;
     cout << "Which map would you like to play? " << endl;
     cin >> mapSelection;
+    while (!fs::exists("..\\maps\\" + mapSelection + ".json")) {
+        cout << "Invalid map name" << endl;
+        cin >> mapSelection;
+    }
 
     json j = read_map_data("..\\maps\\" + mapSelection + ".json");
     Map map = init_map(j);

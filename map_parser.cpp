@@ -35,7 +35,15 @@ Map init_map(json data) {
     }
 
     for (auto o:data["objects"]){
-        Item item(o["id"], o["desc"]);
+        string t=o["type"];
+        try {
+            string t = o["type"];
+
+        } catch (nlohmann::detail::type_error &e) {
+            string t="";
+        }
+
+        Item item(o["id"], o["desc"],t);
         map.rooms[map.get_room_id(o["initialroom"])].add_item(item);
     }
 

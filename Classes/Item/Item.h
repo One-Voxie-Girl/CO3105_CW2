@@ -12,11 +12,13 @@ using namespace std;
 
 class Item {
 public:
-    Item(string id, string desc);
+    Item(string id, string desc, string type);
     bool set_id(string id);
     bool set_desc(string desc);
+    bool set_type(string type);
     string get_id();
     string get_desc();
+    string get_type();
     string print();
 
 
@@ -24,6 +26,7 @@ public:
 private:
     string id;
     string desc;
+    string type;
 };
 
 

@@ -49,16 +49,34 @@ void kill(Map &map, string input){
     if (find(lookEnemies.begin(), lookEnemies.end(), input) != lookEnemies.end()) {
         Enemy E= map.rooms[map.get_room_id(map.player.get_room())].get_enemy(input);
         vector<string> killedby=E.get_killed_by();
+        vector<Item> ammoItems;
 
         int killedBySize = E.get_killed_by().size();
         for (int i = 0; i < map.player.get_items().size(); i++) {
+            Item current_item = map.player.get_items().at(i);
 
-            if (find(killedby.begin(), killedby.end(), map.player.get_items().at(i).get_id()) != killedby.end()) {
+            if (find(killedby.begin(), killedby.end(), current_item.get_id()) != killedby.end()) {
+                if (current_item.get_type() == "ammo") {
+                    ammoItems.push_back(current_item);
+                }
                 killedBySize--;
             }
         }
         if (killedBySize == 0) {
             cout << "You have killed " << input << endl;
+            if (ammoItems.size() > 0) {
+                string ammoUsed="You used the following ammo: ";
+                for (int i = 0; i < ammoItems.size(); i++) {
+                    if (i == ammoItems.size()-1) {
+                        ammoUsed += ammoItems.at(i).get_id();
+                        map.player.remove_item(ammoItems.at(i));
+                        break;
+                    }
+                    ammoUsed += ammoItems.at(i).get_id() + ", ";
+                    map.player.remove_item(ammoItems.at(i));
+                }
+            }
+
             if (map.objective.get_type()=="kill") {
                 map.objective.remove_target(input);
             }

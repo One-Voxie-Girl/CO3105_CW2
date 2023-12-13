@@ -79,7 +79,7 @@ Item Room::pop_item(string id) {
             return item;
         }
     }
-    return Item("null","");
+    return Item("null","","null");
 
 }
 

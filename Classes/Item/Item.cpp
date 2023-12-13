@@ -4,9 +4,11 @@
 
 #include "Item.h"
 
-Item::Item(string id, string desc) {
+Item::Item(string id, string desc,string type) {
     this->id = id;
     this->desc = desc;
+    this->type = type;
+
 }
 
 bool Item::set_id(string id) {
@@ -33,3 +35,14 @@ string Item::print() {
     output += "Desc: "+desc+"\n";
     return output;
 }
+
+bool Item::set_type(string type) {
+    this->type = type;
+    return true;
+}
+
+string Item::get_type() {
+    return type;
+}
+
+

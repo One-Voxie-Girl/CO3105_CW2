@@ -1,7 +1,3 @@
-//
-// Created by onevo on 11/12/2023.
-//
-
 #include "Objective.h"
 
 Objective::Objective(string type, vector<string> targets){

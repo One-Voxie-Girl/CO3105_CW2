@@ -1,6 +1,3 @@
-//
-// Created by Temmie on 27/11/2023.
-//
 #ifndef CO3105_CW2_MAP_PARSER_H
 #define CO3105_CW2_MAP_PARSER_H
 

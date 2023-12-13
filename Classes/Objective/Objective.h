@@ -1,7 +1,3 @@
-//
-// Created by onevo on 11/12/2023.
-//
-
 #ifndef CO3105_CW2_OBJECTIVE_H
 #define CO3105_CW2_OBJECTIVE_H
 

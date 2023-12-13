@@ -4,7 +4,8 @@
 #include "player_choice.h"
 
 int main(int argc, char* argv[]) {
-    json j = read_map_data("..\\maps\\map1.json");
+    string strArg(argv[1]);
+    json j = read_map_data(strArg);
     Map map = init_map(j);
 //    cout << map.print() << endl;
     cout << map.rooms[map.get_room_id(map.player.get_room())].print() << endl;
